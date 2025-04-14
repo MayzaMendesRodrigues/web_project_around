@@ -1,0 +1,12 @@
+.footer__paragraph{
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  color: rgba(84, 84, 84, 1);
+  margin: 64px 0;
+}
+
+.footer{
+  display: flex;
+  justify-content: flex-start;
+}
+
