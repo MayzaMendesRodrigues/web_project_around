@@ -47,3 +47,8 @@ justify-content: center;
   display: block;
 }
 
+.cards__like:hover{
+  opacity: 0.5;
+  cursor: pointer;
+}
+

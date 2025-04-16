@@ -2,19 +2,18 @@
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta
-      name="description"
-      content="#"
-    />
+    <meta name="description" content="Transforme suas fotos de viagem em verdadeiras narrativas visuais. Um layout pensado para destacar paisagens, culturas e momentos inesquecíveis ao redor do mundo.">
+
     <meta name="author" content="Mayza Ynara" />
     <meta
       name="keywords"
-      content="#"
+      content="galeria de fotos, portfólio fotográfico, layout de imagens, design de publicação, fotos profissionais, exposição visual, showcase fotográfico, fotografia digital, fotografia criativa, exibição de imagens"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="pages/index.css">
     <title>EUA Afora</title>
 </head>
+
 <body>
   <div class="page">
     <header class="header">
@@ -26,68 +25,51 @@
   <section class="profile">
     <img src="./images/avatar.svg" alt="Perfil de usuario" class="profile__avatar">
     <div class="profile__info">
-      <h2 class="profile__info_name">Jacques Cousteau</h2>
-      <img src="./images/edit__button.svg" alt="Botao que edita o perfil do usuario" class="profile__info_edit">
-      <p class="profile__info_rule">Explorador</p>
+      <h2 class="profile__name">Jacques Cousteau</h2>
+        <img src="./images/edit__button.svg" alt="Botao que edita o perfil do usuario" class="profile__edit">
+      <p class="profile__aboutMe">Explorador</p>
     </div>
-    <div class="profile__info_add-button"><img src="./images/plus.svg" alt="plus" class="profile__add"></div>
+      <div class="profile__add-button"><img src="./images/plus.svg" alt="atualizacao de perfil" class="profile__add"></div>
   </section>
 
   <section class="cards">
     <div class="cards__element">
-        <img src="./images/img_card.jpg" alt="" class="cards__img">
+        <img src="./images/img_card.jpg" alt="Post do usuario" class="cards__img">
         <div class="cards__content">
-        <p class="cards__title">Teste </p>
-        <img src="./images/like.svg" alt="">
+        <p class="cards__title">Italia</p>
+        <img src="./images/like.svg" class="cards__like" alt="Like no post">
       </div>
     </div>
-
-    <div class="cards__element">
-      <img src="./images/img_card.jpg" alt="" class="cards__img">
-      <div class="cards__content">
-      <p class="cards__title">Teste </p>
-      <img src="./images/like.svg" alt="">
-    </div>
-  </div>
-
-  <div class="cards__element">
-    <img src="./images/img_card.jpg" alt="" class="cards__img">
-    <div class="cards__content">
-    <p class="cards__title">Teste </p>
-    <img src="./images/like.svg" alt="">
-  </div>
-</div>
-
-<div class="cards__element">
-  <img src="./images/img_card.jpg" alt="" class="cards__img">
-  <div class="cards__content">
-  <p class="cards__title">Teste </p>
-  <img src="./images/like.svg" alt="">
-</div>
-</div>
-<div class="cards__element">
-        <img src="./images/img_card.jpg" alt="" class="cards__img">
-        <div class="cards__content">
-        <p class="cards__title">Teste </p>
-        <img src="./images/like.svg" alt="">
-      </div>
-    </div><div class="cards__element">
-      <img src="./images/img_card.jpg" alt="" class="cards__img">
-      <div class="cards__content">
-      <p class="cards__title">Teste </p>
-      <img src="./images/like.svg" alt="">
-    </div>
-  </div>
   </section>
 </main>
 
 
 
-    <footer class="footer">
+<footer class="footer">
       <p class="footer__paragraph">© 2025 Around The U.S.</p>
-    </footer>
+</footer>
+
+
   </div>
 
 
+  <div class="popup" id="popup">
+    <div class="popup__container">
+      <h2 class="popup__title">Editar perfil</h2>
+
+        <input type="text" name="username" placeholder="Nome" id="popup__name" class="popup__input">
+        <input type="text" placeholder="About Me" id="popup__aboutMe" class="popup__input">
+
+
+      <button class="popup__save" type="submit">Salvar</button>
+
+      <img src="./images/plus.svg" alt="" class="popup__closed">
+
+    </div>
+
+
+  </div>
+
+<script src="./scripts/index.js"></script>
 </body>
 </html>
