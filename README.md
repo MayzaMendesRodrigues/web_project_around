@@ -50,6 +50,6 @@ This project is part of a front-end development sprint proposed by the bootcamp,
 
 - **Email**: mayzamrodrigues@gmail.com  
 - **LinkedIn**: [linkedin.com/in/mayza-ynara-mendes-rodrigues](https://linkedin.com/in/mayza-ynara-mendes-rodrigues)  
-- **Site**: 
+- **Site**: https://mayzamendesrodrigues.github.io/web_project_around/
 
 
