@@ -1,4 +1,5 @@
 # Tripleten web_project_around
+![image](https://github.com/user-attachments/assets/0a104bfd-b418-4dae-9954-a68002c3a517)
 
 An interactive and responsive web page where users can add, remove, and like photos. The project was inspired by travel experiences across the United States and is designed to adapt seamlessly to various devices.
 
