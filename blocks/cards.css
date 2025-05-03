@@ -7,9 +7,6 @@
   grid-template-rows: auto;
   gap: 17px;
   justify-content: center;
-
-
-
 }
 
 .cards__element{
@@ -30,7 +27,6 @@ justify-content: center;
   bottom: 0;
   width: 246px;
   padding: 0 21px 0 15px;
-
 }
 
 .cards__title{
