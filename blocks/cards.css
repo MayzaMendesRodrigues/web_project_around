@@ -45,8 +45,17 @@ justify-content: center;
   cursor: pointer;
 }
 
-.cards__like:hover{
+.cards__like:hover, .cards__trash:hover{
   opacity: 0.5;
   cursor: pointer;
+}
+
+.cards__trash{
+  z-index: 1;
+  width: 19px;
+  margin: 0 0 auto auto;
+  padding: 18px 18px 0 0;
+
+
 }
 
