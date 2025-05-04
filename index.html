@@ -26,10 +26,10 @@
     <img src="./images/avatar.svg" alt="Perfil de usuario" class="profile__avatar">
     <div class="profile__info">
       <h2 class="profile__name">Jacques Cousteau</h2>
-        <img src="./images/edit__button.svg" alt="Botao que edita o perfil do usuario" class="profile__edit">
+      <button class="profile__edit" id="profile__edit-btn"><img src="./images/edit__button.svg" alt="Botao que edita o perfil do usuario" ></button>
       <p class="profile__aboutMe">Explorador</p>
     </div>
-      <div class="profile__add-button"><img src="./images/plus.svg" alt="atualizacao de perfil" class="profile__add"></div>
+      <button class="profile__add-button" id="profile__add_card-btn"><img src="./images/plus.svg" alt="atualizacao de perfil" class="profile__add"></button>
   </section>
 
   <section class="cards">
@@ -44,22 +44,23 @@
       <p class="footer__paragraph">© 2025 Around The U.S.</p>
 </footer>
 
+<div class="popup" id="popup"></div>
 
   </div>
-
-
-  <div class="popup" id="popup">
-    <div class="popup__container">
-      <h2 class="popup__title">Editar perfil</h2>
-        <input type="text" name="username" placeholder="Nome" id="popup__name" class="popup__input">
-        <input type="text" placeholder="About Me" id="popup__aboutMe" class="popup__input">
-      <button class="popup__save" type="submit">Salvar</button>
-      <img src="./images/plus.svg" alt="" class="popup__closed">
-    </div>
-  </div>
-
-
 <!--Templates-->
+<template id="popup__template">
+    <div class="popup__container">
+      <h2 class="popup__title"></h2>
+        <input type="text" name="username" placeholder="" id="popup__placeholderFirst" class="popup__input">
+        <input type="text" placeholder="" id="popup__placeholderLast" class="popup__input">
+      <button class="popup__save" type="submit"></button>
+      <img src="./images/plus.svg" alt="Fechar pop" class="popup__closed">
+    </div>
+</template>
+
+
+
+
   <template id="cards__template">
     <div class="cards__element">
       <img src="./images/trash.svg" alt="Eliminar post" class="cards__trash" id="cards__trash">
@@ -69,7 +70,6 @@
       <img src="./images/like.svg" class="cards__like" alt="Like no post">
       </div>
     </div>
-
   </template>
 
 <script src="./scripts/index.js"></script>
