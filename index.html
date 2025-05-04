@@ -33,63 +33,9 @@
   </section>
 
   <section class="cards">
-    <div class="cards__element">
-        <img src="./images/img__card_dolomitas.jpg" alt="Post do usuario" class="cards__img">
-        <div class="cards__content">
-        <p class="cards__title">Dolomitas - IT</p>
-        <img src="./images/like.svg" class="cards__like" alt="Like no post">
-      </div>
-
-    </div>
-
-    <div class="cards__element">
-      <img src="./images/img__card_obelisco.jpg" alt="Post do usuario" class="cards__img">
-      <div class="cards__content">
-      <p class="cards__title">Obelisco - AR</p>
-      <img src="./images/like.svg" class="cards__like" alt="Like no post">
-    </div>
-    </div>
-
-
-    <div class="cards__element">
-      <img src="./images/img__card_abruzzo.jpg" alt="Post do usuario" class="cards__img">
-      <div class="cards__content">
-      <p class="cards__title">Abruzzo - IT</p>
-      <img src="./images/like.svg" class="cards__like" alt="Like no post">
-    </div>
-  </div>
-
-
-
-  <div class="cards__element">
-    <img src="./images/img__card_caminito.jpg" alt="Post do usuario" class="cards__img">
-    <div class="cards__content">
-    <p class="cards__title">Caminito - AR</p>
-    <img src="./images/like.svg" class="cards__like" alt="Like no post">
-  </div>
-</div>
-
-
-
-<div class="cards__element">
-  <img src="./images/img__card_roma.jpg" alt="Post do usuario" class="cards__img">
-  <div class="cards__content">
-  <p class="cards__title">Roma - IT</p>
-  <img src="./images/like.svg" class="cards__like" alt="Like no post">
-</div>
-</div>
-
-
-
-<div class="cards__element">
-  <img src="./images/img__card_congreso.jpg" alt="Post do usuario" class="cards__img">
-  <div class="cards__content">
-  <p class="cards__title">Congreso - AR</p>
-  <img src="./images/like.svg" class="cards__like" alt="Like no post">
-</div>
-</div>
-
+    <div class="cards__element-items"  id="cards__content"></div>
   </section>
+  
 </main>
 
 
@@ -105,19 +51,25 @@
   <div class="popup" id="popup">
     <div class="popup__container">
       <h2 class="popup__title">Editar perfil</h2>
-
         <input type="text" name="username" placeholder="Nome" id="popup__name" class="popup__input">
         <input type="text" placeholder="About Me" id="popup__aboutMe" class="popup__input">
-
-
       <button class="popup__save" type="submit">Salvar</button>
-
       <img src="./images/plus.svg" alt="" class="popup__closed">
+    </div>
+  </div>
 
+
+<!--Templates-->
+  <template id="cards__template">
+    <div class="cards__element">
+      <img src="" alt="Post do usuario" class="cards__img">
+      <div class="cards__content">
+      <p class="cards__title"></p>
+      <img src="./images/like.svg" class="cards__like" alt="Like no post">
+      </div>
     </div>
 
-
-  </div>
+  </template>
 
 <script src="./scripts/index.js"></script>
 </body>

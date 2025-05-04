@@ -1,15 +1,55 @@
-let openPopup = document.querySelector(".profile__edit")
-let closePopup = document.querySelector('.popup__closed')
-let saveEdit = document.querySelector(".popup__save")
-let editName = document.querySelector("#popup__name")
-let editAboutMe = document.querySelector("#popup__aboutMe")
-let profileName = document.querySelector(".profile__name")
-let profileAboutMe = document.querySelector(".profile__aboutMe")
-let like = document.querySelector(".cards__like")
+const openPopup = document.querySelector(".profile__edit")
+const closePopup = document.querySelector('.popup__closed')
+const saveEdit = document.querySelector(".popup__save")
+const editName = document.querySelector("#popup__name")
+const editAboutMe = document.querySelector("#popup__aboutMe")
+const profileName = document.querySelector(".profile__name")
+const profileAboutMe = document.querySelector(".profile__aboutMe")
+const like = document.querySelector(".cards__like")
+const popup = document.getElementById("popup")
+const cardsContainer = document.getElementById("cards__content")
+const cardsTemplate = document.getElementById("cards__template")
 
+
+const cards = [
+  {
+    name: "Dolomitas - IT",
+    link: "./images/img__card_dolomitas.jpg"
+  },
+  {
+    name: "Obelisco - AR",
+    link: "./images/img__card_obelisco.jpg"
+  },
+  {
+    name: "Abruzzo - IT",
+    link: "./images/img__card_abruzzo.jpg"
+  },
+  {
+    name: "Caminito - AR",
+    link: "./images/img__card_caminito.jpg"
+  },
+  {
+    name: "Roma - IT",
+    link: "./images/img__card_roma.jpg"
+  },
+  {
+    name: "Congreso - AR",
+    link: "./images/img__card_congreso.jpg"
+  }
+]
+
+cards.forEach(card => {
+  const clone = cardsTemplate.content.cloneNode(true)
+
+  clone.querySelector(".cards__img").src = card.link
+  clone.querySelector(".cards__title").textContent = card.name
+
+  cardsContainer.appendChild(clone)
+  console.log(clone)
+})
 
 function openPopupContent(){
-  document.getElementById('popup').style.display='flex';
+  popup.style.display='flex';
 
   editName.value = profileName.textContent
   editAboutMe.value = profileAboutMe.textContent
