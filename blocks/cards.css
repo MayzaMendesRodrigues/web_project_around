@@ -51,11 +51,29 @@ justify-content: center;
   cursor: pointer;
 }
 
+.cards__like{
+border: none;
+background: url(../images/like.svg) no-repeat center ;
+background-size: 100%;
+width: 21px;
+}
+
+.cards__like_active{
+  background: url(../images/like__active.svg) no-repeat center;
+}
+
+
 .cards__trash{
   z-index: 1;
   width: 19px;
-  margin: 0 0 auto auto;
-  padding: 18px 18px 0 0;
+  background: url(../images/trash.svg) no-repeat center;
+  background-size: 100%;
+  border: none;
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  height: 19px;
+
 
 
 }
