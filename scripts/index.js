@@ -57,25 +57,25 @@ const popupContent = [
 ];
 
 cards.forEach((card) => {
+  const newCard = createCard(card.name, card.link);
+  cardsContainer.append(newCard);
+});
+
+function createCard(name, link) {
   const clone = cardsTemplate.content
     .querySelector(".cards__element")
     .cloneNode(true);
 
-  clone.querySelector(".cards__img").src = card.link;
-  clone.querySelector(".cards__title").textContent = card.name;
+  clone.querySelector(".cards__img").src = link;
+  clone.querySelector(".cards__title").textContent = name;
   clone.querySelector(".cards__like").addEventListener("click", (evt) => {
     evt.target.classList.toggle("cards__like_active");
   });
   clone.querySelector(".cards__trash").addEventListener("click", (evt) => {
-    evt.target.closest(".cards__element").remove()
-  })
-
-  cardsContainer.appendChild(clone);
-
-  console.log(clone);
-});
-
-
+    evt.target.closest(".cards__element").remove();
+  });
+  return clone;
+}
 
 function createPopUp(index) {
   popupContainer.innerHTML = "";
@@ -108,17 +108,9 @@ function createPopUp(index) {
         name: inputFirst.value,
         link: inputLast.value,
       };
-      const clone = cardsTemplate.content.cloneNode(true);
-      clone.querySelector(".cards__img").src = newCard.link;
-      clone.querySelector(".cards__title").textContent = newCard.name;
-      clone.querySelector(".cards__like").addEventListener("click", (evt) => {
-        evt.target.classList.toggle("cards__like_active");
-      });
-      clone.querySelector(".cards__trash").addEventListener("click", (evt) => {
-        evt.target.closest(".cards__element").remove()
-      })
 
-      cardsContainer.prepend(clone);
+      const createdNewCard = createCard(newCard.name, newCard.link);
+      cardsContainer.prepend(createdNewCard);
       closePopupContent();
     });
   }
