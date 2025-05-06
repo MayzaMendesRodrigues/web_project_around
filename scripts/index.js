@@ -13,6 +13,7 @@ const popupTemplate = document.getElementById("popup__template");
 const editProfile = document.getElementById("profile__edit-btn");
 const addCard = document.getElementById("profile__add_card-btn");
 const deleteCard = document.getElementById("cards__trash");
+const cardsImages = document.querySelector(".cards__img")
 
 const cards = [
   {
@@ -125,3 +126,24 @@ addCard.addEventListener("click", () => createPopUp(1));
 function closePopupContent() {
   popupContainer.style.display = "none";
 }
+
+
+function createPopupImages(card) {
+  popupContainer.innerHTML = "";
+  const popupData = {
+    name: card.name,
+    link: card.link
+  };
+  const clonePopup = popupTemplate.content.cloneNode(true);
+  const titlePopup = clonePopup.querySelector(".popup__title");
+  const closeBtn = clonePopup.querySelector(".popup__closed");
+
+  titlePopup.textContent = popupData.title;
+
+  closeBtn.addEventListener("click", closePopupContent);
+
+}
+cardsImages.addEventListener("click", (evt) => {
+  createPopupImages(evt.target)
+  console.log(evt.target)
+})
