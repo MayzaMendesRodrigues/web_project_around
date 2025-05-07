@@ -107,7 +107,7 @@ height: 22px;
 
 
   .profile__info{
-    grid-template-rows: (2, auto);
+    grid-template-rows: repeat(2, auto);
   }
 
   .profile__name{
