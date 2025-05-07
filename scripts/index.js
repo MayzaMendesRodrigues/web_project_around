@@ -1,22 +1,14 @@
-// const openPopup = document.querySelector(".profile__edit");
-// const closePopup = document.querySelector(".popup__closed");
-// const saveEdit = document.querySelector(".popup__save");
-// const editName = document.querySelector("#popup__name");
-// const editAboutMe = document.querySelector("#popup__aboutMe");
 const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__aboutMe");
-// const like = document.querySelector(".cards__like");
 const popupContainer = document.querySelector("#popup");
 const popupImage = document.querySelector("#popup__image");
 const cardsContainer = document.querySelector("#cards__content");
-const cardsTemplate = document.getElementById("cards__template");
-const popupTemplate = document.getElementById("popup__template");
-const editProfile = document.getElementById("profile__edit-btn");
-const addCard = document.getElementById("profile__add_card-btn");
-// const deleteCard = document.getElementById("cards__trash");
-// const cardsImages = document.querySelector(".cards__img");
+const cardsTemplate = document.querySelector("#cards__template");
+const popupTemplate = document.querySelector("#popup__template");
+const editProfile = document.querySelector("#profile__edit-btn");
+const addCard = document.querySelector("#profile__add_card-btn");
 const imagePopup = document.querySelector(".popup__images_img");
-// const imagePopupTitle = document.querySelector(".popup__images_title");
+const imagePopupTitle = document.querySelector(".popup__images_title");
 const popupImageCloseBtn = document.querySelector(".popup__images_closed")
 
 const cards = [
@@ -49,17 +41,20 @@ const cards = [
 const popupContent = [
   {
     title: "Editar perfil",
-    placeholderFirst: "Nome",
-    placeholderLast: "About Me",
+    inputFirst: "Nome",
+    inputSecond: "About Me",
     buttonPopup: "Salvar",
   },
   {
     title: "Novo Local",
-    placeholderFirst: "Título",
-    placeholderLast: "Link de imagem",
+    inputFirst: "Título",
+    inputSecond: "Link de imagem",
     buttonPopup: "Criar",
   },
 ];
+
+editProfile.addEventListener("click", () => createPopUp(0));
+addCard.addEventListener("click", () => createPopUp(1));
 
 cards.forEach((card) => {
   const newCard = createCard(card.name, card.link);
@@ -99,14 +94,14 @@ function createPopUp(index) {
   const popupData = popupContent[index];
   const clonePopup = popupTemplate.content.cloneNode(true);
   const titlePopup = clonePopup.querySelector(".popup__title");
-  const inputFirst = clonePopup.querySelector("#popup__placeholderFirst");
-  const inputLast = clonePopup.querySelector("#popup__placeholderLast");
+  const inputFirst = clonePopup.querySelector("#popup__inputFirst");
+  const inputLast = clonePopup.querySelector("#popup__inputSecond");
   const saveBtn = clonePopup.querySelector(".popup__save");
   const closeBtn = clonePopup.querySelector(".popup__closed");
 
   titlePopup.textContent = popupData.title;
-  inputFirst.placeholder = popupData.placeholderFirst;
-  inputLast.placeholder = popupData.placeholderLast;
+  inputFirst.placeholder = popupData.inputFirst;
+  inputLast.placeholder = popupData.inputSecond;
   saveBtn.textContent = popupData.buttonPopup;
 
   if (index === 0) {
@@ -116,6 +111,8 @@ function createPopUp(index) {
     saveBtn.addEventListener("click", () => {
       profileName.textContent = inputFirst.value;
       profileAboutMe.textContent = inputLast.value;
+
+
 
       closePopupContent();
     });
@@ -136,24 +133,8 @@ function createPopUp(index) {
   popupContainer.style.display = "flex";
 }
 
-editProfile.addEventListener("click", () => createPopUp(0));
-addCard.addEventListener("click", () => createPopUp(1));
-
 function closePopupContent() {
   popupContainer.style.display = "none";
 }
 
-function createPopupImages(card) {
-  popupContainer.innerHTML = "";
-  const popupData = {
-    name: card.name,
-    link: card.link,
-  };
-  const clonePopup = popupTemplate.content.cloneNode(true);
-  const titlePopup = clonePopup.querySelector(".popup__title");
-  const closeBtn = clonePopup.querySelector(".popup__closed");
 
-  titlePopup.textContent = popupData.title;
-
-  closeBtn.addEventListener("click", closePopupContent);
-}
