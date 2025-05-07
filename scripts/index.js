@@ -1,19 +1,23 @@
-const openPopup = document.querySelector(".profile__edit");
-const closePopup = document.querySelector(".popup__closed");
-const saveEdit = document.querySelector(".popup__save");
-const editName = document.querySelector("#popup__name");
-const editAboutMe = document.querySelector("#popup__aboutMe");
+// const openPopup = document.querySelector(".profile__edit");
+// const closePopup = document.querySelector(".popup__closed");
+// const saveEdit = document.querySelector(".popup__save");
+// const editName = document.querySelector("#popup__name");
+// const editAboutMe = document.querySelector("#popup__aboutMe");
 const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__aboutMe");
-const like = document.querySelector(".cards__like");
-const popupContainer = document.getElementById("popup");
-const cardsContainer = document.getElementById("cards__content");
+// const like = document.querySelector(".cards__like");
+const popupContainer = document.querySelector("#popup");
+const popupImage = document.querySelector("#popup__image");
+const cardsContainer = document.querySelector("#cards__content");
 const cardsTemplate = document.getElementById("cards__template");
 const popupTemplate = document.getElementById("popup__template");
 const editProfile = document.getElementById("profile__edit-btn");
 const addCard = document.getElementById("profile__add_card-btn");
-const deleteCard = document.getElementById("cards__trash");
-const cardsImages = document.querySelector(".cards__img")
+// const deleteCard = document.getElementById("cards__trash");
+// const cardsImages = document.querySelector(".cards__img");
+const imagePopup = document.querySelector(".popup__images_img");
+// const imagePopupTitle = document.querySelector(".popup__images_title");
+const popupImageCloseBtn = document.querySelector(".popup__images_closed")
 
 const cards = [
   {
@@ -68,6 +72,16 @@ function createCard(name, link) {
     .cloneNode(true);
 
   clone.querySelector(".cards__img").src = link;
+  clone.querySelector(".cards__img").addEventListener("click", () => {
+    popupImage.style.display = "flex";
+    imagePopup.src = link;
+    imagePopupTitle.textContent = name;
+  });
+
+  popupImageCloseBtn.addEventListener("click", () => {
+    popupImage.style.display = "none"
+  })
+
   clone.querySelector(".cards__title").textContent = name;
   clone.querySelector(".cards__like").addEventListener("click", (evt) => {
     evt.target.classList.toggle("cards__like_active");
@@ -75,6 +89,8 @@ function createCard(name, link) {
   clone.querySelector(".cards__trash").addEventListener("click", (evt) => {
     evt.target.closest(".cards__element").remove();
   });
+
+
   return clone;
 }
 
@@ -127,12 +143,11 @@ function closePopupContent() {
   popupContainer.style.display = "none";
 }
 
-
 function createPopupImages(card) {
   popupContainer.innerHTML = "";
   const popupData = {
     name: card.name,
-    link: card.link
+    link: card.link,
   };
   const clonePopup = popupTemplate.content.cloneNode(true);
   const titlePopup = clonePopup.querySelector(".popup__title");
@@ -141,9 +156,4 @@ function createPopupImages(card) {
   titlePopup.textContent = popupData.title;
 
   closeBtn.addEventListener("click", closePopupContent);
-
 }
-cardsImages.addEventListener("click", (evt) => {
-  createPopupImages(evt.target)
-  console.log(evt.target)
-})
