@@ -7,9 +7,9 @@ const cardsTemplate = document.querySelector("#cards__template");
 const popupTemplate = document.querySelector("#popup__template");
 const editProfile = document.querySelector("#profile__edit-btn");
 const addCard = document.querySelector("#profile__add_card-btn");
-const imagePopup = document.querySelector(".popup__images_img");
-const imagePopupTitle = document.querySelector(".popup__images_title");
-const popupImageCloseBtn = document.querySelector(".popup__images_closed")
+const imagePopup = document.querySelector(".popup__images-img");
+const imagePopupTitle = document.querySelector(".popup__images-title");
+const popupImageCloseBtn = document.querySelector(".popup__images-closed")
 
 const cards = [
   {
