@@ -12,6 +12,15 @@ An interactive and responsive web page where users can add, remove, and like pho
 
 ## Key Features
 
+- **Reusable Templates and Safer Rendering**  
+  Uses reusable HTML and JavaScript templates to safely add new elements to the page, avoiding the use of `innerHTML` and reducing the risk of XSS attacks.
+
+- **Photo Gallery Enhancements**  
+  - **Add New Photos**: Users can add new images to the gallery through a form.  
+  - **Like System**: It's now possible to like individual photos with real-time visual feedback.  
+  - **Delete Posts**: Each added image can be removed by the user.  
+  - **Expand Image**: Clicking on a photo displays it in an enlarged popup for better viewing.
+
 - **Responsive Layout**  
   Developed based on Figma prototypes, using media queries to ensure adaptability across devices of different sizes.
 
@@ -27,12 +36,12 @@ An interactive and responsive web page where users can add, remove, and like pho
 - **Branching with Git**  
   Different branches were used during development to organize and isolate features, ensuring a clean and maintainable codebase.
 
-##  Upcoming Features
+## Upcoming Features
 
-- Adding and removing photos from the gallery.  
-- Like system for photos.  
-- Form validation.  
-- Local storage or backend integration.  
+- Form validation with real-time feedback.  
+- Integration with local storage or backend services for persistent data.  
+- Drag-and-drop image upload support.  
+- Accessibility improvements (keyboard navigation).  
 
 ## Project Goal
 
