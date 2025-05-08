@@ -70,6 +70,7 @@ function createCard(name, link) {
   clone.querySelector(".cards__img").addEventListener("click", () => {
     popupImage.style.display = "flex";
     imagePopup.src = link;
+imagePopup.alt = name
     imagePopupTitle.textContent = name;
   });
 
