@@ -1,3 +1,4 @@
+import { validation } from "./validation.js";
 const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__aboutMe");
 const popupContainer = document.querySelector("#popup");
@@ -9,7 +10,7 @@ const editProfile = document.querySelector("#profile__edit-btn");
 const addCard = document.querySelector("#profile__add_card-btn");
 const imagePopup = document.querySelector(".popup__images-img");
 const imagePopupTitle = document.querySelector(".popup__images-title");
-const popupImageCloseBtn = document.querySelector(".popup__images-closed")
+const popupImageCloseBtn = document.querySelector(".popup__images-closed");
 
 const cards = [
   {
@@ -42,13 +43,25 @@ const popupContent = [
   {
     title: "Editar perfil",
     inputFirst: "Nome",
-    inputSecond: "About Me",
+    inputSecond: "Sobre mim",
+    minlengthFirst: "2",
+    maxlengthFirst: "40",
+    maxlengthSecond: "200",
+    minlengthSecond: "2",
+    firstInputType: "text",
+    secondInputType: "text",
     buttonPopup: "Salvar",
   },
   {
     title: "Novo Local",
     inputFirst: "Título",
     inputSecond: "Link de imagem",
+    minlengthFirst: "2",
+    maxlengthFirst: "30",
+    maxlengthSecond: "300",
+    minlengthSecond: "2",
+    firstInputType: "text",
+    secondInputType: "url",
     buttonPopup: "Criar",
   },
 ];
@@ -70,13 +83,13 @@ function createCard(name, link) {
   clone.querySelector(".cards__img").addEventListener("click", () => {
     popupImage.style.display = "flex";
     imagePopup.src = link;
-imagePopup.alt = name
+    imagePopup.alt = name;
     imagePopupTitle.textContent = name;
   });
 
   popupImageCloseBtn.addEventListener("click", () => {
-    popupImage.style.display = "none"
-  })
+   closeImagePopup()
+  });
 
   clone.querySelector(".cards__title").textContent = name;
   clone.querySelector(".cards__like").addEventListener("click", (evt) => {
@@ -86,8 +99,11 @@ imagePopup.alt = name
     evt.target.closest(".cards__element").remove();
   });
 
-
   return clone;
+}
+
+function closeImagePopup(){
+   popupImage.style.display = "none";
 }
 
 function createPopUp(index) {
@@ -99,26 +115,41 @@ function createPopUp(index) {
   const inputLast = clonePopup.querySelector("#popup__inputSecond");
   const saveBtn = clonePopup.querySelector(".popup__save");
   const closeBtn = clonePopup.querySelector(".popup__closed");
+  const form = clonePopup.querySelector(".popup__form");
+
 
   titlePopup.textContent = popupData.title;
   inputFirst.placeholder = popupData.inputFirst;
+  inputFirst.maxLength = popupData.maxlengthFirst;
+  inputFirst.type = popupData.firstInputType;
+  inputLast.type = popupData.secondInputType;
+  inputFirst.minLength = popupData.minlengthFirst;
+  inputLast.maxLength = popupData.maxlengthSecond;
+  inputLast.minLength = popupData.minlengthSecond;
   inputLast.placeholder = popupData.inputSecond;
   saveBtn.textContent = popupData.buttonPopup;
+
+
 
   if (index === 0) {
     inputFirst.value = profileName.textContent;
     inputLast.value = profileAboutMe.textContent;
 
-    saveBtn.addEventListener("click", () => {
+  form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
       profileName.textContent = inputFirst.value;
       profileAboutMe.textContent = inputLast.value;
 
-
-
       closePopupContent();
     });
+
+
   } else {
-    saveBtn.addEventListener("click", () => {
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
       const newCard = {
         name: inputFirst.value,
         link: inputLast.value,
@@ -129,13 +160,36 @@ function createPopUp(index) {
       closePopupContent();
     });
   }
-  closeBtn.addEventListener("click", closePopupContent);
+
+  closeBtn.addEventListener("click", closePopupContent );
   popupContainer.append(clonePopup);
   popupContainer.style.display = "flex";
+
+  validation();
 }
 
-function closePopupContent() {
+function closePopupContent(){
   popupContainer.style.display = "none";
+  popupContainer.innerHTML=""
 }
 
+document.addEventListener("keydown", (evt) => {
+  if(evt.key === "Escape"){
+    closePopupContent()
+  }
+})
 
+popupContainer.addEventListener("click", (evt) => {
+  console.log("Click on popup container")
+  const form = popupContainer.querySelector(".popup__form")
+  if(!form.contains(evt.target)){
+   closePopupContent()
+  }
+})
+
+popupImage.addEventListener("click", (evt) =>{
+  console.log("Click on popupimage")
+  if(!imagePopup.contains(evt.target)){
+   closeImagePopup()
+  }
+})

@@ -60,7 +60,7 @@
 
         <section class="popup" id="popup__image">
           <div class="popup__images">
-            <img class="popup__images-img" src="" alt="" />
+            <img class="popup__images-img" src="#" alt="" />
             <p class="popup__images-title"></p>
             <img
               src="./images/plus.svg"
@@ -80,23 +80,40 @@
 
     <!--Templates-->
     <template id="popup__template">
-      <div class="popup__container">
+      <form class="popup__form"  novalidate>
         <h2 class="popup__title"></h2>
-        <input
-          type="text"
-          placeholder=""
-          id="popup__inputFirst"
-          class="popup__input"
-        />
-        <input
-          type="text"
-          placeholder=""
-          id="popup__inputSecond"
-          class="popup__input"
-        />
-        <button class="popup__save" type="submit"></button>
+        <label class="popup__field">
+          <input
+            type=""
+            placeholder=""
+            id="popup__inputFirst"
+            minlength=""
+            maxlength=""
+            class="popup__input"
+            required
+          />
+          <span class="popup__input-error popup__input-error_active" id="popup__inputFirst-error"
+            ></span
+          >
+        </label>
+        <label class="popup__field">
+          <input
+            type=""
+            placeholder=""
+            id="popup__inputSecond"
+            minlength=""
+            maxlength=""
+            class="popup__input"
+            required
+          />
+          <span class="popup__input-error popup__input-error_active" id="popup__inputSecond-error"
+            ></span
+          >
+        </label>
+
+        <button class="popup__save" type="submit" ></button>
         <img src="./images/plus.svg" alt="Fechar" class="popup__closed" />
-      </div>
+      </form>
     </template>
 
     <template id="cards__template">
@@ -110,6 +127,6 @@
       </li>
     </template>
 
-    <script src="./scripts/index.js"></script>
-  </body>
+    <script type="module" src="./scripts/index.js"></script>
+-  </body>
 </html>
