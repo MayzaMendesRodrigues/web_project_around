@@ -1,4 +1,6 @@
 import { validation } from "./validation.js";
+import { cards , popupContent } from "./consts.js";
+
 const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__aboutMe");
 const popupContainer = document.querySelector("#popup");
@@ -12,59 +14,7 @@ const imagePopup = document.querySelector(".popup__images-img");
 const imagePopupTitle = document.querySelector(".popup__images-title");
 const popupImageCloseBtn = document.querySelector(".popup__images-closed");
 
-const cards = [
-  {
-    name: "Dolomitas - IT",
-    link: "./images/img__card_dolomitas.jpg",
-  },
-  {
-    name: "Obelisco - AR",
-    link: "./images/img__card_obelisco.jpg",
-  },
-  {
-    name: "Abruzzo - IT",
-    link: "./images/img__card_abruzzo.jpg",
-  },
-  {
-    name: "Caminito - AR",
-    link: "./images/img__card_caminito.jpg",
-  },
-  {
-    name: "Roma - IT",
-    link: "./images/img__card_roma.jpg",
-  },
-  {
-    name: "Congreso - AR",
-    link: "./images/img__card_congreso.jpg",
-  },
-];
 
-const popupContent = [
-  {
-    title: "Editar perfil",
-    inputFirst: "Nome",
-    inputSecond: "Sobre mim",
-    minlengthFirst: "2",
-    maxlengthFirst: "40",
-    maxlengthSecond: "200",
-    minlengthSecond: "2",
-    firstInputType: "text",
-    secondInputType: "text",
-    buttonPopup: "Salvar",
-  },
-  {
-    title: "Novo Local",
-    inputFirst: "Título",
-    inputSecond: "Link de imagem",
-    minlengthFirst: "2",
-    maxlengthFirst: "30",
-    maxlengthSecond: "300",
-    minlengthSecond: "2",
-    firstInputType: "text",
-    secondInputType: "url",
-    buttonPopup: "Criar",
-  },
-];
 
 editProfile.addEventListener("click", () => createPopUp(0));
 addCard.addEventListener("click", () => createPopUp(1));
@@ -80,6 +30,7 @@ function createCard(name, link) {
     .cloneNode(true);
 
   clone.querySelector(".cards__img").src = link;
+  clone.querySelector(".cards__img").alt = name;
   clone.querySelector(".cards__img").addEventListener("click", () => {
     popupImage.style.display = "flex";
     imagePopup.src = link;
