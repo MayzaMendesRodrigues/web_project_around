@@ -1,6 +1,6 @@
-import { validation } from "./validation.js";
 import { cards, popupContent } from "./consts.js";
 import { Card } from "./card.js";
+import { FormValidator } from "./formValidator.js";
 
 const profileName = document.querySelector(".profile__name");
 const profileAboutMe = document.querySelector(".profile__aboutMe");
@@ -14,6 +14,16 @@ const addCard = document.querySelector("#profile__add_card-btn");
 const imagePopup = document.querySelector(".popup__images-img");
 const imagePopupTitle = document.querySelector(".popup__images-title");
 const popupImageCloseBtn = document.querySelector(".popup__images-closed");
+
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__save",
+  inactiveButtonClass: "popup__save_inactive",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
+};
+
 
 editProfile.addEventListener("click", () => createPopUp(0));
 addCard.addEventListener("click", () => createPopUp(1));
@@ -107,10 +117,13 @@ function createPopUp(index) {
   }
 
   closeBtn.addEventListener("click", closePopupContent);
+
   popupContainer.append(clonePopup);
   popupContainer.style.display = "flex";
 
-  validation();
+  const validator = new FormValidator(validationConfig, form);
+  validator.enableValidation();
+
 }
 
 function closePopupContent() {
