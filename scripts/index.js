@@ -24,7 +24,6 @@ const validationConfig = {
   errorClass: "popup__input-error_active",
 };
 
-
 editProfile.addEventListener("click", () => createPopUp(0));
 addCard.addEventListener("click", () => createPopUp(1));
 
@@ -38,16 +37,26 @@ document.addEventListener("keydown", (evt) => {
   }
 });
 
-cards.forEach((card) => {
+
+cards.forEach(card => createCard(card.name, card.link))
+
+function createCard(name, link, isPrepend = false) {
   const cardInstance = new Card(
-    card.name,
-    card.link,
+    name,
+    link,
     "#cards__template",
     handleImageClick
   );
+
   const cardElement = cardInstance.generateCards();
-  cardsContainer.append(cardElement);
-});
+
+  if (isPrepend) {
+    cardsContainer.prepend(cardElement);
+  } else {
+    cardsContainer.append(cardElement)
+  }
+}
+
 
 function handleImageClick(name, link) {
   popupImage.style.display = "flex";
@@ -92,25 +101,17 @@ function createPopUp(index) {
       profileName.textContent = inputFirst.value;
       profileAboutMe.textContent = inputLast.value;
 
+      createCard(inputFirst.value, inputLast.value, true);
+
+      console.log(createCard)
+
+
       closePopupContent();
     });
   } else {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-
-      const newCard = {
-        name: inputFirst.value,
-        link: inputLast.value,
-      };
-
-      const cardInstance = new Card(
-        newCard.name,
-        newCard.link,
-        "#cards__template",
-        handleImageClick
-      );
-      const cardElement = cardInstance.generateCards();
-      cardsContainer.prepend(cardElement);
+      createCard(inputFirst.value, inputLast.value, true);
 
       closePopupContent();
     });
@@ -121,9 +122,13 @@ function createPopUp(index) {
   popupContainer.append(clonePopup);
   popupContainer.style.display = "flex";
 
-  const validator = new FormValidator(validationConfig, form);
-  validator.enableValidation();
+  const formValidators = {};
 
+  if (!formValidators[popupData.title]) {
+    const validator = new FormValidator(validationConfig, form);
+    validator.enableValidation();
+    formValidators[popupData.title] = validator;
+  }
 }
 
 function closePopupContent() {
@@ -133,7 +138,7 @@ function closePopupContent() {
 
 popupContainer.addEventListener("click", (evt) => {
   const form = popupContainer.querySelector(".popup__form");
-  if (!form.contains(evt.target)) {
+  if (form &&!form.contains(evt.target)) {
     closePopupContent();
   }
 });
