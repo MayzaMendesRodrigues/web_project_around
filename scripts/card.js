@@ -14,7 +14,7 @@ export class Card {
 
     return cardTemplate
   }
-_setEventListener(cardElement){
+_setEventListeners(cardElement){
 const likeButton = cardElement.querySelector(".cards__like");
 const trashButton = cardElement.querySelector(".cards__trash");
 const image = cardElement.querySelector(".cards__img")
@@ -32,7 +32,7 @@ image.addEventListener("click", () => {
 })
 }
 
-generateCards() {
+generateCard() {
   const cardElement = this._getTemplate()
    const image = cardElement.querySelector(".cards__img");
     const title = cardElement.querySelector(".cards__title");
@@ -41,7 +41,7 @@ generateCards() {
     image.alt = this._name;
     title.textContent = this._name;
 
-    this._setEventListener(cardElement);
+    this._setEventListeners(cardElement);
 
     return cardElement;
 

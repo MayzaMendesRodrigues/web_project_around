@@ -39,6 +39,7 @@ justify-content: center;
   text-overflow: ellipsis;
   max-width:190px ;
   overflow: hidden;
+  white-space: nowrap;
 }
 
 .cards__img{

@@ -25,8 +25,8 @@ export const  cards = [
   },
 ];
 
-export const popupContent = [
-  {
+export const popupContent = {
+ editeProfile: {
     title: "Editar perfil",
     inputFirst: "Nome",
     inputSecond: "Sobre mim",
@@ -38,7 +38,7 @@ export const popupContent = [
     secondInputType: "text",
     buttonPopup: "Salvar",
   },
-  {
+  createPost:{
     title: "Novo Local",
     inputFirst: "Título",
     inputSecond: "Link de imagem",
@@ -50,5 +50,6 @@ export const popupContent = [
     secondInputType: "url",
     buttonPopup: "Criar",
   },
-];
+}
+
 

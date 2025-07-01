@@ -24,8 +24,8 @@ const validationConfig = {
   errorClass: "popup__input-error_active",
 };
 
-editProfile.addEventListener("click", () => createPopUp(0));
-addCard.addEventListener("click", () => createPopUp(1));
+editProfile.addEventListener("click", () => createPopUp('editeProfile'));
+addCard.addEventListener("click", () => createPopUp('createPost'));
 
 popupImageCloseBtn.addEventListener("click", () => {
   closeImagePopup();
@@ -48,7 +48,7 @@ function createCard(name, link, isPrepend = false) {
     handleImageClick
   );
 
-  const cardElement = cardInstance.generateCards();
+  const cardElement = cardInstance.generateCard();
 
   if (isPrepend) {
     cardsContainer.prepend(cardElement);
@@ -69,9 +69,9 @@ function closeImagePopup() {
   popupImage.style.display = "none";
 }
 
-function createPopUp(index) {
+function createPopUp(popup) {
   popupContainer.innerHTML = "";
-  const popupData = popupContent[index];
+  const popupData = popupContent[popup];
   const clonePopup = popupTemplate.content.cloneNode(true);
   const titlePopup = clonePopup.querySelector(".popup__title");
   const inputFirst = clonePopup.querySelector("#popup__inputFirst");
@@ -91,7 +91,7 @@ function createPopUp(index) {
   inputLast.placeholder = popupData.inputSecond;
   saveBtn.textContent = popupData.buttonPopup;
 
-  if (index === 0) {
+  if (popup === 'editeProfile') {
     inputFirst.value = profileName.textContent;
     inputLast.value = profileAboutMe.textContent;
 
@@ -101,14 +101,10 @@ function createPopUp(index) {
       profileName.textContent = inputFirst.value;
       profileAboutMe.textContent = inputLast.value;
 
-      createCard(inputFirst.value, inputLast.value, true);
-
-      console.log(createCard)
-
 
       closePopupContent();
     });
-  } else {
+  } else if(popup === 'createPost') {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
       createCard(inputFirst.value, inputLast.value, true);
