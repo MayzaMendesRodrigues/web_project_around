@@ -26,7 +26,7 @@ export const  cards = [
 ];
 
 export const popupContent = {
- editeProfile: {
+ editProfile: {
     title: "Editar perfil",
     inputFirst: "Nome",
     inputSecond: "Sobre mim",
@@ -38,6 +38,7 @@ export const popupContent = {
     secondInputType: "text",
     buttonPopup: "Salvar",
   },
+
   createPost:{
     title: "Novo Local",
     inputFirst: "Título",
@@ -51,5 +52,14 @@ export const popupContent = {
     buttonPopup: "Criar",
   },
 }
+
+export const validationConfig = {
+    formSelector: ".popup__form",
+    inputSelector: ".popup__input",
+    submitButtonSelector: ".popup__save",
+    inactiveButtonClass: "popup__save_inactive",
+    inputErrorClass: "popup__input_type_error",
+    errorClass: "popup__input-error_active",
+  };
 
 
