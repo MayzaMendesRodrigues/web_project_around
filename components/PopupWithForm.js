@@ -39,8 +39,7 @@ export class PopupWithForm extends Popup {
     this.popupContainer.append(this.form);
     super.open();
 
-    const validator = new FormValidator(validationConfig, this.form);
-    validator.enableValidation();
+    
   }
 
   _getInputValues() {
