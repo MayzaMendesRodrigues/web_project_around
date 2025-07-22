@@ -1,5 +1,5 @@
 import { cards, popupContent } from "../utils/constants.js";
-import { Card } from "../components/card.js";
+import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
@@ -44,7 +44,7 @@ popupWithImage.setEventListeners();
 
 
 
-const editeProfilePopup = new PopupWithForm(
+const editProfilePopup = new PopupWithForm(
   popupContent.editProfile,
 
   (inputValues) => handleProfileSubmit(inputValues, userInfo),
@@ -53,10 +53,10 @@ const editeProfilePopup = new PopupWithForm(
 
 );
 editProfile.addEventListener("click", () => {
-  editeProfilePopup.open();
+  editProfilePopup.open();
 });
 
-editeProfilePopup._setEventListener();
+editProfilePopup._setEventListener();
 
 const createCardPopup = new PopupWithForm(
   popupContent.createPost,
