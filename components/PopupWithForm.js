@@ -38,7 +38,7 @@ export class PopupWithForm extends Popup {
     this.popupContainer.append(this.form);
     super.open();
 
-    
+
   }
 
   _getInputValues() {

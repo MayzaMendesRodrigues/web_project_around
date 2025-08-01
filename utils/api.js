@@ -47,9 +47,11 @@ export class Api {
   }
 
   async addCard({ name, link }) {
+ 
     const res = await fetch(`${this.baseUrl}/cards`, {
       method: "POST",
       headers: this.headers,
+
       body: JSON.stringify({
         name,
         link,

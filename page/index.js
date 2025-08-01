@@ -6,8 +6,10 @@ import { PopupWithForm } from "../components/PopupWithForm.js";
 import { UserInfo } from "../components/UserInfo.js";
 import { api } from "../utils/api.js";
 import {
+  handleCreateCardSubmit,
   handleProfileSubmit,
   setEditProfileDefaultValues,
+  setAddCardDefaultValues,
 } from "../utils/utils.js";
 import { FormValidator } from "../components/FormValidator.js";
 const editProfile = document.querySelector("#profile__edit-btn");
@@ -26,7 +28,7 @@ api.getUserInfo().then((user) => {
 
 const jsonCards = await api.getInicialCards();
 
-const section = new Section(
+export const section = new Section(
   {
     items: jsonCards,
     renderer: (item) => {
@@ -44,21 +46,13 @@ const section = new Section(
 
 section.renderItems();
 
-function createCard(name, link) {
-  const cardInstance = new Card(name, link, "#cards__template", () =>
-    popupWithImage.open({ name, link })
-  );
-
-  const cardElement = cardInstance.generateCard();
-  return cardElement;
-}
-
 const createCardPopup = new PopupWithForm(
   popupContent.createPost,
-  (inputValues) => {
-    const cardElement = createCard(inputValues.first, inputValues.second);
-    section.addItem(cardElement);
-  }
+  (inputValues) =>  handleCreateCardSubmit(
+      inputValues.first,
+      inputValues.second,
+      section
+    )
 );
 
 const popupWithImage = new PopupWithImage("#popup__image");
@@ -85,8 +79,6 @@ editProfile.addEventListener("click", () => {
 });
 
 editProfilePopup._setEventListener();
-
-
 
 const createCardFormElement = createCardPopup.generatePopup();
 const createCardFormValidator = new FormValidator(
