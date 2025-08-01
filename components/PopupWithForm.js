@@ -1,5 +1,4 @@
-import { validationConfig } from "../utils/constants.js";
-import { FormValidator } from "./FormValidator.js";
+
 import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {

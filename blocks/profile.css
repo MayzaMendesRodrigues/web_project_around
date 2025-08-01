@@ -4,11 +4,37 @@
   margin-top: 36px;
   align-items: center;
 }
+.profile__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
 
 .profile__avatar {
-  margin-right: 50px;
   border-radius: 50%;
-  width: 168px;
+  width: 120px;
+  height: 120px;
+  cursor: pointer;
+  object-fit: cover;
+  position: relative;
+  margin-right: 35px;
+}
+
+.profile__pen{
+  position: absolute;
+  opacity: 0;
+}
+
+.profile__pen:hover{
+  opacity: 1;
+}
+
+
+
+.profile__avatar:hover
+ {
+  opacity: 0.5;
 }
 
 .profile__info {

@@ -30,20 +30,29 @@
 
       <main class="content">
         <section class="profile">
-          <img
-            src="./images/avatar.svg"
-            alt="Perfil do usuario"
-            class="profile__avatar"
-          />
+          <div class="profile__content">
+            <img
+              src="./images/avatar.svg"
+              alt="Perfil do usuario"
+              class="profile__avatar"
+            />
+
+            <img
+              src="./images/pen.svg"
+              alt="editar perfil"
+              class="profile__pen"
+            />
+          </div>
+
           <div class="profile__info">
-            <h1 class="profile__name">Jacques Cousteau</h1>
+            <h1 class="profile__name"></h1>
             <button class="profile__edit" id="profile__edit-btn">
               <img
                 src="./images/edit__button.svg"
                 alt="Botao que edita o perfil do usuario"
               />
             </button>
-            <p class="profile__aboutMe">Explorador</p>
+            <p class="profile__aboutMe"></p>
           </div>
           <button class="profile__add-button" id="profile__add_card-btn">
             <img
@@ -62,17 +71,21 @@
           <div class="popup__images">
             <img class="popup__images-img" src="#" alt="" />
             <p class="popup__images-title"></p>
-            <img
-              src="./images/plus.svg"
-              alt="Fechar"
-              class="popup__closed"
-            />
+            <img src="./images/plus.svg" alt="Fechar" class="popup__closed" />
           </div>
+        </section>
+
+        <section class="popup" id="popupDeleteCard">
+          <form class="popup__form">
+            <h2 class="popup__title">Tem certeza?</h2>
+            <button class="popup__save" type="submit">sim</button>
+            <img src="./images/plus.svg" alt="Fechar" class="popup__closed" />
+          </form>
         </section>
       </main>
 
       <footer class="footer">
-        <p class="footer__paragraph">	&copy; 2025 Around The U.S.</p>
+        <p class="footer__paragraph">&copy; 2025 Around The U.S.</p>
       </footer>
 
       <div class="popup" id="popup"></div>
@@ -80,7 +93,7 @@
 
     <!--Templates-->
     <template id="popup__template">
-      <form class="popup__form"  novalidate>
+      <form class="popup__form" novalidate>
         <h2 class="popup__title"></h2>
         <label class="popup__field">
           <input
@@ -92,9 +105,10 @@
             class="popup__input"
             required
           />
-          <span class="popup__input-error popup__input-error_active" id="popup__inputFirst-error"
-            ></span
-          >
+          <span
+            class="popup__input-error popup__input-error_active"
+            id="popup__inputFirst-error"
+          ></span>
         </label>
         <label class="popup__field">
           <input
@@ -106,12 +120,13 @@
             class="popup__input"
             required
           />
-          <span class="popup__input-error popup__input-error_active" id="popup__inputSecond-error"
-            ></span
-          >
+          <span
+            class="popup__input-error popup__input-error_active"
+            id="popup__inputSecond-error"
+          ></span>
         </label>
 
-        <button class="popup__save" type="submit" ></button>
+        <button class="popup__save" type="submit"></button>
         <img src="./images/plus.svg" alt="Fechar" class="popup__closed" />
       </form>
     </template>

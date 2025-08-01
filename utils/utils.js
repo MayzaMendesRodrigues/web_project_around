@@ -1,9 +1,14 @@
+import {api} from "../utils/api.js";
 
 export function handleProfileSubmit(inputValues, userInfo) {
-    userInfo.setUserInfo({
+    api.setUserInfo({
       name: inputValues.first,
       about: inputValues.second,
-    });
+    }).then((user)=> {
+      const {name , about, avatar} = user;
+      userInfo.setUserInfo({name, about, avatar});
+      console.log(`User info updated: ${name}, ${about}, ${avatar}`);
+    })
   };
 
 export function setEditProfileDefaultValues(inputFirst, inputLast, userInfo){
