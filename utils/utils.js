@@ -2,7 +2,9 @@ import { api } from "../utils/api.js";
 import { Card } from "../components/Card.js";
 
 export function handleProfileSubmit(inputValues, userInfo) {
-
+  if (!inputValues.first || !inputValues.second) {
+    return Promise.reject("Campos obrigatórios não preenchidos.");
+  }
   api
     .setUserInfo({
       name: inputValues.first,
@@ -13,16 +15,28 @@ export function handleProfileSubmit(inputValues, userInfo) {
 
       userInfo.setUserInfo({ name, about, avatar });
     })
+    .catch((error) => {
+      console.error("Erro ao atualizar o perfil:", error);
+    });
 }
+
 export function handleNewPhoto(inputValues, userInfo) {
-  api.setNewPhoto(inputValues).then((avatar) => {
-    userInfo.setNewPhoto(avatar.avatar);
-  }).catch((error)=> {
-    console.error("Erro ao atualizar Foto de perfil", error)
-    alert("Houve um erro ao atualizar foto. Por favor tente novamente")
-  }).finally(() => {
-    console.log("Processo finalizado")
-  })
+  if (!inputValues || typeof inputValues !== "string") {
+    return Promise.reject("Formato de foto invalida =");
+  }
+
+  api
+    .setNewPhoto(inputValues)
+    .then((avatar) => {
+      userInfo.setNewPhoto(avatar.avatar);
+    })
+    .catch((error) => {
+      console.error("Erro ao atualizar Foto de perfil", error);
+      alert("Houve um erro ao atualizar foto. Por favor tente novamente");
+    })
+    .finally(() => {
+      console.log("Processo finalizado");
+    });
 }
 
 export function setEditProfileDefaultValues(inputFirst, inputLast, userInfo) {
@@ -32,6 +46,9 @@ export function setEditProfileDefaultValues(inputFirst, inputLast, userInfo) {
 }
 
 export function handleCreateCardSubmit(name, link, section) {
+  if (!name || !link) {
+    return Promise.reject("Nome ou link invalido");
+  }
   api
     .addCard({
       name: name,
@@ -43,6 +60,10 @@ export function handleCreateCardSubmit(name, link, section) {
         popupWithImage.open({ name, link })
       );
       section.addItem(newCard);
+    })
+    .catch((error) => {
+      console.error("Erro ao criar card", error);
+      alert("Não foi possível criar o card. Tente novamente.");
     });
 }
 
@@ -52,19 +73,18 @@ export function setAddCardDefaultValues(inputFirst, inputSecond, cardInfo) {
   inputSecond.value = currentCardInfo.second;
 }
 
-
-export function handleLikeCard(cardId, isLiked, likeButton){
-  if (isLiked){
-
-    api.dislikeCard(cardId).then(() => {
-      likeButton.classList.toggle("cards__like");
-
+export function handleLikeCard(cardId, isLiked, likeButton) {
+  const apiMethod = isLiked ? api.dislikeCard : api.likeCard;
+  const className = "cards__like_active";
+  apiMethod(cardId)
+    .then(() => {
+      likeButton.classList.toggle(className);
     })
-
-    }else {
- api.likeCard(cardId).then(() => {
-        likeButton.classList.toggle("cards__like_active");
-
+    .catch((error) => {
+      console.error("Erro ao atualizar curtida:", error);
+      alert("Não foi possível atualizar a curtida. Tente novamente.");
     })
-    }
-  }
+    .finally(() => {
+      console.log("Finalizou tentativa de curtir/descurtir");
+    });
+}

@@ -32,8 +32,10 @@ export class Card {
     const image = cardElement.querySelector(".cards__img");
 
     likeButton.addEventListener("click", () => {
-      this._handleLikeCard(this._id, this._liked, likeButton);
       this._liked = !this._liked;
+
+      this._handleLikeCard(this._id, this._liked, likeButton);
+      likeButton.classList.toggle("cards__like_active", this._liked);
     });
 
     trashButton.addEventListener("click", () => {
@@ -47,18 +49,17 @@ export class Card {
 
   generateCard() {
     const cardElement = this._getTemplate();
-    console.log("AQUI O CARD", cardElement);
     const image = cardElement.querySelector(".cards__img");
     const title = cardElement.querySelector(".cards__title");
-    // const like = cardElement.querySelector(".cards__like");
-    // // if (like) {
-    // //   like.classList.toggle("cards__like_active");
-    // // } else {
-    // //   like.classList.toggle("cards__like");
-    // // }
+    const likeButton = cardElement.querySelector(".cards__like");
+
     image.src = this._link;
     image.alt = this._name;
     title.textContent = this._name;
+
+    if (this._liked) {
+      likeButton.classList.add("cards__like_active");
+    }
 
     this._setEventListeners(cardElement);
 

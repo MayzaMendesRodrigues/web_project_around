@@ -56,7 +56,6 @@ export class Api {
       throw new Error(`Erro ao buscar cards: ${res.status} `);
     }
     const data = await res.json();
-    console.log(data)
     return data.reverse();
   }
 
