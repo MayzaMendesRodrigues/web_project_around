@@ -1,4 +1,4 @@
-import { cards, popupContent, validationConfig } from "../utils/constants.js";
+import { popupContent, validationConfig } from "../utils/constants.js";
 import { Card } from "../components/Card.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
@@ -7,13 +7,17 @@ import { UserInfo } from "../components/UserInfo.js";
 import { api } from "../utils/api.js";
 import {
   handleCreateCardSubmit,
+  handleLikeCard,
+  handleNewPhoto,
   handleProfileSubmit,
   setEditProfileDefaultValues,
-  setAddCardDefaultValues,
 } from "../utils/utils.js";
 import { FormValidator } from "../components/FormValidator.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
+import { PopupWithPhoto } from "../components/PopupWithPhoto.js";
 const editProfile = document.querySelector("#profile__edit-btn");
 const addCard = document.querySelector("#profile__add_card-btn");
+const editPhoto = document.querySelector(".profile__content");
 
 const userInfo = new UserInfo({
   nameSelector: ".profile__name",
@@ -26,39 +30,67 @@ api.getUserInfo().then((user) => {
   userInfo.setUserInfo({ name, about, avatar });
 });
 
-const jsonCards = await api.getInicialCards();
+const apiCards = await api.getInicialCards();
 
-export const section = new Section(
-  {
-    items: jsonCards,
-    renderer: (item) => {
-      const card = new Card(
-        item.name,
-        item.link,
-        "#cards__template",
-        (name, link) => popupWithImage.open({ name, link })
-      ).generateCard();
-      section.addItem(card);
-    },
-  },
-  ".cards__element-items"
-);
+const cards = apiCards.map((item) => {
+  const handleCardClick = (name, link) => popupWithImage.open({ name, link });
+  const cardDeletionCallback = () => {
+    api
+      .deleteCard(item._id)
+      .then(() => {
+        popupWithConfirmation.close();
+        section.removeItem(card);
+      })
+      .catch((e) =>
+        console.error(`Failed trying to delete card=${item._id}`, e)
+      );
+  };
+  const handleDeleteCard = () =>
+    popupWithConfirmation.open(cardDeletionCallback);
+
+  const card = new Card(
+    item.name,
+    item.link,
+    item.isLiked,
+    item._id,
+    "#cards__template",
+    handleCardClick,
+    handleDeleteCard,
+    handleLikeCard
+  );
+  return card;
+});
+
+const cardRender = (card) => card.generateCard();
+
+const section = new Section(cards, cardRender, ".cards__element-items");
 
 section.renderItems();
 
 const createCardPopup = new PopupWithForm(
   popupContent.createPost,
-  (inputValues) =>  handleCreateCardSubmit(
-      inputValues.first,
-      inputValues.second,
-      section
-    )
+  (inputValues) =>
+    handleCreateCardSubmit(inputValues.first, inputValues.second, section)
 );
 
 const popupWithImage = new PopupWithImage("#popup__image");
 popupWithImage.setEventListeners();
 
-popupWithImage.setEventListeners();
+const popupWithConfirmation = new PopupWithConfirmation(
+  "#popupWithConfirmation",
+  "#popupConfirmationButton"
+);
+
+popupWithConfirmation.setEventListeners();
+
+const editPhotoPopup = new PopupWithPhoto("#popupEditPhoto", (inputValues) =>
+  handleNewPhoto(inputValues, userInfo)
+);
+
+editPhotoPopup.setEventListeners();
+editPhoto.addEventListener("click", () => {
+  editPhotoPopup.open();
+});
 
 const editProfilePopup = new PopupWithForm(
   popupContent.editProfile,

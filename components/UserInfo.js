@@ -15,10 +15,10 @@ export class UserInfo {
   setUserInfo({ name, about, avatar }) {
     this._nameElement.textContent = name;
     this._aboutElement.textContent = about;
-    this._avatarElement.setAttribute("src", avatar)
+    this._avatarElement.setAttribute("src", avatar);
+  }
 
+  setNewPhoto(avatar) {
+    this._avatarElement.setAttribute("src", avatar);
   }
 }
-
-// GET https://around-api.pt-br.tripleten-services.com/v1/cards/
-

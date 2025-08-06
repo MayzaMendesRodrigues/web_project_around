@@ -1,4 +1,3 @@
-
 import { Popup } from "./Popup.js";
 
 export class PopupWithForm extends Popup {
@@ -37,8 +36,6 @@ export class PopupWithForm extends Popup {
     this.popupContainer.innerHTML = " ";
     this.popupContainer.append(this.form);
     super.open();
-
-
   }
 
   _getInputValues() {
@@ -49,11 +46,26 @@ export class PopupWithForm extends Popup {
     return inputValues;
   }
 
+  renderLoading(isLoading, loadingText = "Salvando...", defaultText="Salvar") {
+   const saveBtn = this.form.querySelector(".popup__save");
+   saveBtn.textContent = isLoading ? loadingText : defaultText
+
+  }
+
   _setEventListener() {
     super.setEventListeners();
-    this.form.addEventListener("submit", () => {
-      this.handleSubmit(this._getInputValues());
-      super.close();
+    this.form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      this.renderLoading(true);
+      try {
+        this.handleSubmit(this._getInputValues());
+      } catch (error) {
+        console.error("Erro ao enviar formulario:", error);
+      } finally {
+        this.renderLoading(false);
+                super.close();
+
+      }
     });
   }
 

@@ -75,10 +75,45 @@
           </div>
         </section>
 
-        <section class="popup" id="popupDeleteCard">
+        <section class="popup" id="popupWithConfirmation">
           <form class="popup__form">
             <h2 class="popup__title">Tem certeza?</h2>
-            <button class="popup__save" type="submit">sim</button>
+            <button
+              class="popup__save"
+              type="submit"
+              id="popupConfirmationButton"
+            >
+              sim
+            </button>
+            <img src="./images/plus.svg" alt="Fechar" class="popup__closed" />
+          </form>
+        </section>
+
+        <section class="popup" id="popupEditPhoto">
+          <form class="popup__form">
+            <h2 class="popup__title">Alterar a foto do perfil</h2>
+            <label class="popup__field">
+              <input
+                type="url"
+                placeholder="url da imagem"
+                id="popup__input-photo"
+                minlength="2"
+                maxlength="300"
+                class="popup__input"
+                required
+              />
+              <span
+                class="popup__input-error popup__input-error_active"
+                id="popup__inputSecond-error"
+              ></span>
+            </label>
+            <button
+              class="popup__save"
+              type="submit"
+              id="popupEditeProfileButton"
+            >
+              salvar
+            </button>
             <img src="./images/plus.svg" alt="Fechar" class="popup__closed" />
           </form>
         </section>

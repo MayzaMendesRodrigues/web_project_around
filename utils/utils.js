@@ -2,6 +2,7 @@ import { api } from "../utils/api.js";
 import { Card } from "../components/Card.js";
 
 export function handleProfileSubmit(inputValues, userInfo) {
+
   api
     .setUserInfo({
       name: inputValues.first,
@@ -9,9 +10,19 @@ export function handleProfileSubmit(inputValues, userInfo) {
     })
     .then((user) => {
       const { name, about, avatar } = user;
+
       userInfo.setUserInfo({ name, about, avatar });
-      console.log(`User info updated: ${name}, ${about}, ${avatar}`);
-    });
+    })
+}
+export function handleNewPhoto(inputValues, userInfo) {
+  api.setNewPhoto(inputValues).then((avatar) => {
+    userInfo.setNewPhoto(avatar.avatar);
+  }).catch((error)=> {
+    console.error("Erro ao atualizar Foto de perfil", error)
+    alert("Houve um erro ao atualizar foto. Por favor tente novamente")
+  }).finally(() => {
+    console.log("Processo finalizado")
+  })
 }
 
 export function setEditProfileDefaultValues(inputFirst, inputLast, userInfo) {
@@ -31,8 +42,7 @@ export function handleCreateCardSubmit(name, link, section) {
       const newCard = new Card(name, link, "#cards__template", (name, link) =>
         popupWithImage.open({ name, link })
       );
-      const cardHtml = newCard.generateCard();
-      section.addItem(cardHtml);
+      section.addItem(newCard);
     });
 }
 
@@ -41,3 +51,20 @@ export function setAddCardDefaultValues(inputFirst, inputSecond, cardInfo) {
   inputFirst.value = currentCardInfo.first;
   inputSecond.value = currentCardInfo.second;
 }
+
+
+export function handleLikeCard(cardId, isLiked, likeButton){
+  if (isLiked){
+
+    api.dislikeCard(cardId).then(() => {
+      likeButton.classList.toggle("cards__like");
+
+    })
+
+    }else {
+ api.likeCard(cardId).then(() => {
+        likeButton.classList.toggle("cards__like_active");
+
+    })
+    }
+  }
