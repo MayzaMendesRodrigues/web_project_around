@@ -45,21 +45,17 @@ export function setEditProfileDefaultValues(inputFirst, inputLast, userInfo) {
   inputLast.value = currentUserInfo.about;
 }
 
-export function handleCreateCardSubmit(name, link, section) {
+export function handleCreateCardSubmit(name, link) {
   if (!name || !link) {
     return Promise.reject("Nome ou link invalido");
   }
-  api
+  return api
     .addCard({
       name: name,
       link: link,
     })
     .then((card) => {
-      const { name, link } = card;
-      const newCard = new Card(name, link, "#cards__template", (name, link) =>
-        popupWithImage.open({ name, link })
-      );
-      section.addItem(newCard);
+      return card;
     })
     .catch((error) => {
       console.error("Erro ao criar card", error);
@@ -73,18 +69,4 @@ export function setAddCardDefaultValues(inputFirst, inputSecond, cardInfo) {
   inputSecond.value = currentCardInfo.second;
 }
 
-export function handleLikeCard(cardId, isLiked, likeButton) {
-  const apiMethod = isLiked ? api.dislikeCard : api.likeCard;
-  const className = "cards__like_active";
-  apiMethod(cardId)
-    .then(() => {
-      likeButton.classList.toggle(className);
-    })
-    .catch((error) => {
-      console.error("Erro ao atualizar curtida:", error);
-      alert("Não foi possível atualizar a curtida. Tente novamente.");
-    })
-    .finally(() => {
-      console.log("Finalizou tentativa de curtir/descurtir");
-    });
-}
+

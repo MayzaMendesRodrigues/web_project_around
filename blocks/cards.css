@@ -64,7 +64,7 @@ background-size: 100%;
 width: 21px;
 }
 
-.cards__like_active{
+.cards__like.active{
   background: url(../images/like__active.svg) no-repeat center;
 }
 

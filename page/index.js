@@ -7,7 +7,7 @@ import { UserInfo } from "../components/UserInfo.js";
 import { api } from "../utils/api.js";
 import {
   handleCreateCardSubmit,
-  handleLikeCard,
+
   handleNewPhoto,
   handleProfileSubmit,
   setEditProfileDefaultValues,
@@ -30,10 +30,7 @@ api.getUserInfo().then((user) => {
   userInfo.setUserInfo({ name, about, avatar });
 });
 
-const apiCards = await api.getInicialCards();
-
-const cards = apiCards.map((item) => {
-  const handleCardClick = (name, link) => popupWithImage.open({ name, link });
+const mapCard = (item) => {
   const cardDeletionCallback = () => {
     api
       .deleteCard(item._id)
@@ -47,7 +44,7 @@ const cards = apiCards.map((item) => {
   };
   const handleDeleteCard = () =>
     popupWithConfirmation.open(cardDeletionCallback);
-
+  const handleCardClick = (name, link) => popupWithImage.open({ name, link });
   const card = new Card(
     item.name,
     item.link,
@@ -56,8 +53,14 @@ const cards = apiCards.map((item) => {
     "#cards__template",
     handleCardClick,
     handleDeleteCard,
-    handleLikeCard
+
   );
+  return card;
+};
+const apiCards = await api.getInicialCards();
+
+const cards = apiCards.map((item) => {
+  const card = mapCard(item);
   return card;
 });
 
@@ -69,8 +72,14 @@ section.renderItems();
 
 const createCardPopup = new PopupWithForm(
   popupContent.createPost,
-  (inputValues) =>
-    handleCreateCardSubmit(inputValues.first, inputValues.second, section)
+  (inputValues) => {
+    handleCreateCardSubmit(inputValues.first, inputValues.second).then(
+      (item) => {
+        const card = mapCard(item);
+        section.addItem(card);
+      }
+    );
+  }
 );
 
 const popupWithImage = new PopupWithImage("#popup__image");

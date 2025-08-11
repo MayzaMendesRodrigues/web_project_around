@@ -1,22 +1,22 @@
+import { api } from "../utils/api.js";
+
 export class Card {
   constructor(
     name,
     link,
-    liked,
+    isLiked,
     id,
     templateSelector,
     handleCardClick,
-    handleDeleteCard,
-    handleLikeCard
+    handleDeleteCard
   ) {
     this._name = name;
     this._link = link;
-    this._liked = liked;
+    this._isLiked = isLiked;
     this._id = id;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
     this._handleDeleteCard = handleDeleteCard;
-    this._handleLikeCard = handleLikeCard;
   }
 
   _getTemplate() {
@@ -32,10 +32,7 @@ export class Card {
     const image = cardElement.querySelector(".cards__img");
 
     likeButton.addEventListener("click", () => {
-      this._liked = !this._liked;
-
-      this._handleLikeCard(this._id, this._liked, likeButton);
-      likeButton.classList.toggle("cards__like_active", this._liked);
+      this._handleLikeCard(likeButton)
     });
 
     trashButton.addEventListener("click", () => {
@@ -45,6 +42,29 @@ export class Card {
     image.addEventListener("click", () => {
       this._handleCardClick(this._name, this._link);
     });
+  }
+
+  _handleLikeCard(likeButton) {
+    const isActive = likeButton.classList.contains("active");
+    console.log(likeButton.classList)
+    if (isActive) {
+      api
+        .dislikeCard(this._id)
+        .then(() => {
+          likeButton.classList.remove("active");
+        })
+        .catch((error) => {
+          console.error("Erro ao atualizar descurtida:", error);
+          alert("Não foi possível atualizar a curtida. Tente novamente.");
+        });
+    }else{
+      api.likeCard(this._id).then(()=> {
+        likeButton.classList.add("active")
+      }) .catch((error) => {
+          console.error("Erro ao atualizar curtida:", error);
+          alert("Não foi possível atualizar a curtida. Tente novamente.");
+        });
+    }
   }
 
   generateCard() {
@@ -57,8 +77,8 @@ export class Card {
     image.alt = this._name;
     title.textContent = this._name;
 
-    if (this._liked) {
-      likeButton.classList.add("cards__like_active");
+    if (this._isLiked) {
+      likeButton.classList.add("active");
     }
 
     this._setEventListeners(cardElement);
