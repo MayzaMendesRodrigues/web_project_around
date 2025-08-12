@@ -8,7 +8,6 @@ export function handleProfileSubmit(inputValues, userInfo) {
   submitButton.textContent = "salvando...";
   submitButton.disabled = true;
   submitButton.classList.add("disabled");
-  console.log("aqui desativa 2")
 
   api
     .setUserInfo({
@@ -18,7 +17,6 @@ export function handleProfileSubmit(inputValues, userInfo) {
     .then((user) => {
       const { name, about, avatar } = user;
       submitButton.textContent = "salvar";
-
 
       userInfo.setUserInfo({ name, about, avatar });
     })
@@ -34,8 +32,8 @@ export function handleNewPhoto(inputValues, userInfo) {
 
   api
     .setNewPhoto(inputValues)
-    .then((avatar) => {
-      userInfo.setNewPhoto(avatar.avatar);
+    .then((data) => {
+      userInfo.setNewPhoto(data.avatar);
     })
     .catch((error) => {
       console.error("Erro ao atualizar Foto de perfil", error);
@@ -52,16 +50,22 @@ export function setEditProfileDefaultValues(inputFirst, inputLast, userInfo) {
   inputLast.value = currentUserInfo.about;
 }
 
-export function  handleCreateCardSubmit(name, link) {
+export async function handleCreateCardSubmit(name, link) {
   if (!name || !link) {
     return Promise.reject("Nome ou link invalido");
   }
+  const submitButton = document.querySelector("#popup .popup__save");
+  submitButton.textContent = "salvando...";
+  submitButton.disabled = true;
+  submitButton.classList.add("disabled");
   return api
     .addCard({
       name: name,
       link: link,
     })
     .then((card) => {
+      submitButton.textContent = "criar";
+
       return card;
     })
     .catch((error) => {
