@@ -7,7 +7,6 @@ import { UserInfo } from "../components/UserInfo.js";
 import { api } from "../utils/api.js";
 import {
   handleCreateCardSubmit,
-
   handleNewPhoto,
   handleProfileSubmit,
   setEditProfileDefaultValues,
@@ -101,6 +100,14 @@ editPhoto.addEventListener("click", () => {
   editPhotoPopup.open();
 });
 
+const editPhotoFormElemnt = document.querySelector("#popupEditPhoto")
+const editPhotoFormValidator = new FormValidator(
+  validationConfig,
+  editPhotoFormElemnt
+)
+editPhotoFormValidator.enableValidation()
+
+
 const editProfilePopup = new PopupWithForm(
   popupContent.editProfile,
   (inputValues) => handleProfileSubmit(inputValues, userInfo),
@@ -132,3 +139,4 @@ addCard.addEventListener("click", () => {
   createCardPopup.open();
 });
 createCardPopup._setEventListener();
+

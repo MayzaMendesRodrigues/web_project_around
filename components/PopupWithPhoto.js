@@ -9,9 +9,8 @@ export class PopupWithPhoto extends Popup {
   }
 
   _getInputValues() {
-    return {
-      url: this.inputUrl.value,
-    };
+    return  this.inputUrl.value
+
   }
 
   setEventListeners() {

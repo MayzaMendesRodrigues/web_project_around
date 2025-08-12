@@ -36,12 +36,7 @@
               alt="Perfil do usuario"
               class="profile__avatar"
             />
-
-            <img
-              src="./images/pen.svg"
-              alt="editar perfil"
-              class="profile__pen"
-            />
+            <div class="profile__overlay"></div>
           </div>
 
           <div class="profile__info">
@@ -104,9 +99,10 @@
               />
               <span
                 class="popup__input-error popup__input-error_active"
-                id="popup__input-error"
+                id="popup__input-photo-error"
               ></span>
             </label>
+
             <button
               class="popup__save"
               type="submit"
@@ -161,7 +157,7 @@
           ></span>
         </label>
 
-        <button class="popup__save" type="submit"></button>
+        <button class="popup__save disabled" type="submit" disabled></button>
         <img src="./images/plus.svg" alt="Fechar" class="popup__closed" />
       </form>
     </template>

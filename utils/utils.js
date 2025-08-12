@@ -1,10 +1,15 @@
 import { api } from "../utils/api.js";
-import { Card } from "../components/Card.js";
 
 export function handleProfileSubmit(inputValues, userInfo) {
   if (!inputValues.first || !inputValues.second) {
     return Promise.reject("Campos obrigatórios não preenchidos.");
   }
+  const submitButton = document.querySelector("#popup .popup__save");
+  submitButton.textContent = "salvando...";
+  submitButton.disabled = true;
+  submitButton.classList.add("disabled");
+  console.log("aqui desativa 2")
+
   api
     .setUserInfo({
       name: inputValues.first,
@@ -12,6 +17,8 @@ export function handleProfileSubmit(inputValues, userInfo) {
     })
     .then((user) => {
       const { name, about, avatar } = user;
+      submitButton.textContent = "salvar";
+
 
       userInfo.setUserInfo({ name, about, avatar });
     })
@@ -45,7 +52,7 @@ export function setEditProfileDefaultValues(inputFirst, inputLast, userInfo) {
   inputLast.value = currentUserInfo.about;
 }
 
-export function handleCreateCardSubmit(name, link) {
+export function  handleCreateCardSubmit(name, link) {
   if (!name || !link) {
     return Promise.reject("Nome ou link invalido");
   }
@@ -68,5 +75,3 @@ export function setAddCardDefaultValues(inputFirst, inputSecond, cardInfo) {
   inputFirst.value = currentCardInfo.first;
   inputSecond.value = currentCardInfo.second;
 }
-
-

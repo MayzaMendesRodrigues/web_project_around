@@ -1,3 +1,8 @@
+
+
+
+
+
 .profile {
   display: flex;
   margin-right: auto;
@@ -5,10 +10,7 @@
   align-items: center;
 }
 .profile__content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  position: relative;
 }
 
 .profile__avatar {
@@ -17,21 +19,25 @@
   height: 120px;
   cursor: pointer;
   object-fit: cover;
-  position: relative;
 }
-
-.profile__pen{
+.profile__overlay {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../images/pen.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 25px;
+  background-color: rgba(0, 0, 0, 0.5);
   opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
 }
 
-.profile__pen:hover{
+.profile__content:hover .profile__overlay{
   opacity: 1;
-}
-
-.profile__avatar:hover
- {
-  opacity: 0.5;
 }
 
 .profile__info {
@@ -106,7 +112,7 @@
   .profile__avatar {
     margin: 42px 0 30px 0;
   }
-  .profile__info{
+  .profile__info {
     margin-left: 0;
   }
 
