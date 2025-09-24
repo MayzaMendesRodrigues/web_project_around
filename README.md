@@ -21,7 +21,7 @@ An interactive and responsive web page where users can add, remove, and like pho
 ## Technologies Used
 * **HTML**: Semantic markup with accessibility considerations
 * **CSS**: Responsive layout using media queries and BEM methodology for scalable styling.
-* **JavaScript**: DOM manipulation for popup interactions and dynamic profile editing.
+* **JavaScript(OOP)**: DOM manipulation for popup interactions, dynamic profile editing, and gallery features, following object-oriented principles for better code organization and reusability.
 * **Git/GitHub**: Branching strategy and Conventional Commits.
 * **Jest:** Unit testing framework for JS functionality.
 
