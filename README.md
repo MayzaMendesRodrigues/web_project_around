@@ -56,6 +56,11 @@ It was developed based on Figma UI prototypes and real design references.
 
 ---
 
+## Challenges and Learnings
+
+One of the biggest challenges of this project was the transition from the functional programming paradigm, with which I am more familiar, to Object-Oriented Programming (OOP) in JavaScript. Applying concepts like classes, inheritance, and encapsulation was crucial for structuring the code in a more scalable and modular way, especially in managing UI elements and creating pop-ups. Overcoming this learning curve allowed me to write cleaner, more reusable, and easier-to-maintain code, strengthening my understanding of how different paradigms can solve the same problems in more efficient ways
+
+---
 ##  Running the Project
 
 ```bash
