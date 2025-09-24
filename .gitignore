@@ -1,1 +1,26 @@
+# Node modules
+node_modules/
+
+# Diretórios de build / produção
+
+coverage/
+
+# Arquivos de configuração do sistema
 .DS_Store
+Thumbs.db
+
+
+
+# Editor / IDE
+.vscode/
+
+
+# NPM / Yarn
+package-lock.json
+
+
+# Test coverage reports
+coverage/
+
+
+
