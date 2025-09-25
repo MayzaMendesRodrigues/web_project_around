@@ -21,7 +21,10 @@ An interactive and responsive web page where users can add, remove, and like pho
 ## Technologies Used
 * **HTML**: Semantic markup with accessibility considerations
 * **CSS**: Responsive layout using media queries and BEM methodology for scalable styling.
-* **JavaScript(OOP)**: DOM manipulation for popup interactions, dynamic profile editing, and gallery features, following object-oriented principles for better code organization and reusability.
+* **JavaScript(OOP + API integration)**: <br><br>
+*DOM manipulation for popup interactions, dynamic profile editing, and gallery features, following object-oriented principles for better code organization and reusability.*<br><br>
+Object-Oriented Programming (OOP) for code organization, scalability, and reusability.<br><br>
+API integration for fetching and persisting data (cards, likes, user profile).<br><br>
 * **Git/GitHub**: Branching strategy and Conventional Commits.
 * **Jest:** Unit testing framework for JS functionality.
 
