@@ -81,7 +81,7 @@ npm install
 npm test
 ```
 ---
-##  Coverage: 93.18%
+##  Coverage: 79.74%
 
 ---
 
