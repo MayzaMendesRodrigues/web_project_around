@@ -46,13 +46,11 @@ export class FormValidator {
     if (this._hasInvalidInput()) {
       this._buttonElement.classList.add("disabled");
       this._buttonElement.setAttribute("disabled", true);
-            console.log("Aqui desativa")
 
     } else {
       this._buttonElement.classList.remove("disabled");
       this._buttonElement.removeAttribute("disabled");
 
-      console.log("Aqui ativa")
     }
 
   }

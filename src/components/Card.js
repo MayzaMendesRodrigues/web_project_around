@@ -1,4 +1,5 @@
 import { api } from "../utils/api.js";
+import "../components/tests/Card.test.js"
 
 export class Card {
   constructor(
@@ -46,7 +47,7 @@ export class Card {
 
   _handleLikeCard(likeButton) {
     const isActive = likeButton.classList.contains("active");
-    console.log(likeButton.classList)
+  
     if (isActive) {
       api
         .dislikeCard(this._id)
